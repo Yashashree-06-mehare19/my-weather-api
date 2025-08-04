@@ -1,7 +1,9 @@
 import webbrowser
 import os
-from flask import Flask , request , jsonify
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 app=Flask(__name__)
+CORS(app)
 # Define your OpenWeatherMap API Key here temporarily
 OPENWEATHER_API_KEY = "ebc85e3b4f63ce523a96786c1bfd55fc"
 import requests
@@ -68,7 +70,7 @@ def get_weather():
         return jsonify({"error": "City parameter is missing"}), 400
 
     # Step 2: Use your get_current_weather function
-    weather_data = get_current_weather(city, OPENWEATHER_API_KEY)
+    weather_data = get_current_weather(city, OPENWEATHER_API_KEY) 
 
     # Step 3: Return the data as JSON
     if weather_data:
